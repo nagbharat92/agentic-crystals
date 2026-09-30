@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Autonomous AI agents. Mineral form. Alexander's Agentic Crystals plan, call tools, and execute your intentions without waiting for approval.">
+  <title>Alexander's Agentic Crystals | You manifest. It executes.</title>
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+    /* Keep the retreat's daylight palette consistent across host themes. */
+    :root {
+      --cp-cosmic: #f7f4ec;
+      --cp-nebula: #eee5d6;
+      --cp-card: #fffcf6;
+      --cp-ivory: #35443b;
+      --cp-silver: #5d695f;
+      --cp-dim: #6b7267;
+      --cp-line: #dcded0;
+      --cp-gold: #a95038;
+      --cp-gold-bright: #88412f;
+      --cp-quartz: #cedbd7;
+      --cp-rose: #dfafbd;
+      --cp-amethyst: #b7a3cf;
+      --cp-citrine: #e9c078;
+      --cp-tourmaline: #788579;
+      --cp-clear: #d2e5f1;
+      --cp-selenite: #e4d9bd;
+      --cp-led: #45644d;
+      --cp-pedestal: #e8e4d8;
+      --cp-chrome: #b8c0ae;
+      --cp-crystal-light: #fffef7;
+      --cp-crystal-shadow: #788b80;
+      --cp-sky: #e8ede1;
+      --cp-dawn: #f7e7d4;
+      --cp-sun: #ecc494;
+      --cp-mountain-far: #bfcbb7;
+      --cp-mountain-mid: #97ad96;
+      --cp-mountain-near: #779079;
+      --cp-mountain-front: #516f5b;
+      --cp-transparent: transparent;
+    }
+    * { box-sizing: border-box; }
+    html, html[data-theme] { scroll-behavior: smooth; scroll-padding-top: 32px; color-scheme: light; }
+    body {
+      margin: 0; background: var(--cp-cosmic); color: var(--cp-ivory);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, a { -webkit-tap-highlight-color: var(--cp-transparent); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cp-gold); outline-offset: 6px; }
+    ::selection { background: var(--cp-nebula); color: var(--cp-ivory); }
+    .container { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
+    .skip { position: absolute; top: -80px; padding: 12px; background: var(--cp-card); z-index: 10; }
+    .skip:focus { top: 12px; }
+    .cosmos {
+      position: relative; overflow: hidden;
+      background: linear-gradient(150deg, var(--cp-cosmic), var(--cp-card) 55%, var(--cp-sky));
+    }
+    header { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 28px; border-bottom: 1px solid var(--cp-line); }
+    .brand { display: inline-flex; align-items: center; gap: 12px; }
+    .brand-mark { color: var(--cp-gold); width: 36px; height: 32px; }
+    .brand-name { font-family: Georgia, "Times New Roman", serif; font-size: 17px; font-weight: 400; letter-spacing: .02em; }
+    .brand-name span { display: block; margin-top: 3px; color: var(--cp-dim); font-size: 9px; letter-spacing: .24em; text-transform: uppercase; }
+    nav { display: flex; gap: 32px; font-size: 12px; color: var(--cp-silver); }
+    nav a:hover { color: var(--cp-gold-bright); }
+    .hero { position: relative; display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; min-height: 660px; padding-block: 64px 88px; }
+    .eyebrow { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--cp-gold); font-weight: 600; }
+    .eyebrow::before { content: ""; display: inline-block; width: 24px; height: 1px; background: var(--cp-gold); vertical-align: middle; margin-right: 12px; }
+    h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(52px, 6.2vw, 80px); line-height: 1.08; letter-spacing: -.055em; font-weight: 400; margin: 28px 0; }
+    h1 span { color: var(--cp-gold); font-style: italic; }
+    .serif { font-family: Georgia, "Times New Roman", serif; }
+    .subtitle { max-width: 360px; font-size: 21px; line-height: 1.6; color: var(--cp-silver); margin-bottom: 32px; }
+    .agent-pitch { max-width: 410px; color: var(--cp-silver); font-size: 14px; line-height: 1.8; margin: -12px 0 24px; }
+    .agent-pitch strong { color: var(--cp-ivory); font-weight: 500; }
+    .capabilities { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .capabilities span { border: 1px solid var(--cp-line); background: var(--cp-sky); padding: 8px 12px; border-radius: 10px; font-size: 10px; color: var(--cp-led); }
+    .secondary { display: inline-block; margin: 16px 0 0 20px; font-size: 12px; color: var(--cp-silver); }
+    .primary { display: inline-flex; align-items: center; justify-content: center; gap: 32px; padding: 16px 24px; border-radius: 10px; background: var(--cp-gold); color: var(--cp-cosmic); font-size: 13px; font-weight: 600; transition: background .2s, transform .2s; }
+    .primary:hover { background: var(--cp-gold-bright); transform: translateY(-2px); }
+    .hero-note { color: var(--cp-dim); font-size: 10px; letter-spacing: .08em; margin-top: 20px; }
+    .hero-art { margin: 0; position: relative; height: 560px; padding-bottom: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .mountain-scene { position: absolute; inset: 28px 8px 130px; width: calc(100% - 16px); height: calc(100% - 158px); border-radius: 48% 48% 16px 16px; overflow: hidden; }
+    .hero-crystal { --gem: var(--cp-quartz); width: 230px; height: 320px; position: relative; z-index: 1; filter: drop-shadow(0 0 18px var(--cp-crystal-light)); animation: breathe 7s ease-in-out infinite; }
+    .pedestal { width: 260px; height: 88px; margin-top: -26px; position: relative; z-index: 2; border-radius: 50% / 28%; background: linear-gradient(90deg, var(--cp-chrome), var(--cp-pedestal) 60%, var(--cp-nebula)); border-bottom: 1px solid var(--cp-chrome); }
+    .pedestal::before { content: ""; position: absolute; inset: 0 0 auto; height: 36px; border-radius: 50%; background: radial-gradient(ellipse, var(--cp-card), var(--cp-pedestal) 70%); border: 1px solid var(--cp-line); }
+    .led { position: absolute; width: 4px; height: 4px; background: var(--cp-led); border-radius: 50%; left: 50%; bottom: 24px; box-shadow: 0 0 8px var(--cp-led); animation: blink 2.4s steps(1) infinite; }
+    .agent-online { position: absolute; top: 0; font-size: 10px; letter-spacing: .1em; color: var(--cp-led); }
+    .agent-online::before, .runtime-status::before { content: ""; display: inline-block; height: 5px; width: 5px; margin-right: 8px; background: var(--cp-led); border-radius: 50%; box-shadow: 0 0 8px var(--cp-led); }
+    .hero-runtime { position: absolute; bottom: 0; width: min(340px, 100%); padding: 20px 24px; z-index: 3; text-align: left; border: 1px solid var(--cp-line); border-radius: 16px; background: var(--cp-card); font-family: Georgia, "Times New Roman", serif; font-size: 13px; line-height: 1.9; color: var(--cp-silver); }
+    .hero-runtime strong { display: block; color: var(--cp-led); font-weight: 400; font-size: 11px; letter-spacing: .08em; margin-bottom: 8px; }
+    .hero-runtime code { display: block; overflow-wrap: anywhere; font-family: inherit; }
+    .hero-runtime em { font-style: normal; color: var(--cp-gold); }
+    .status { display: flex; justify-content: space-between; gap: 16px; padding: 20px 0; border-top: 1px solid var(--cp-line); color: var(--cp-dim); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .status span:first-child { color: var(--cp-gold); }
+    .agent-metrics { display: grid; grid-template-columns: repeat(4, 1fr); padding-block: 36px; gap: 24px; border-top: 1px solid var(--cp-line); }
+    .agent-metrics strong { display: block; font-family: Georgia, "Times New Roman", serif; font-size: 32px; font-weight: 400; letter-spacing: -.04em; }
+    .agent-metrics span { display: block; margin-top: 8px; color: var(--cp-dim); font-size: 10px; letter-spacing: .06em; }
+    section { padding-block: 96px; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 48px; }
+    h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(30px, 4vw, 44px); line-height: 1.2; font-weight: 400; letter-spacing: -.04em; margin: 16px 0 0; }
+    .section-aside { font-size: 16px; color: var(--cp-dim); max-width: 260px; line-height: 1.6; margin: 0; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+    .step { border-top: 1px solid var(--cp-line); padding-top: 28px; }
+    .step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+    .step-top svg { width: 32px; height: 32px; color: var(--cp-gold); }
+    .step-number { font-size: 10px; color: var(--cp-dim); font-family: Consolas, "Courier New", Courier, monospace; }
+    .step h3 { font-size: 17px; font-weight: 400; line-height: 1.6; margin: 0; max-width: 290px; }
+    .step p { font-size: 14px; color: var(--cp-dim); line-height: 1.8; margin-bottom: 0; }
+    .retreat-band { position: relative; overflow: hidden; min-height: 320px; background: var(--cp-dawn); display: grid; place-items: center; text-align: center; padding: 64px 20px; }
+    .retreat-message { position: relative; max-width: 640px; }
+    .retreat-message h2 { font-size: clamp(30px, 4vw, 44px); }
+    .retreat-message p { font-size: 18px; color: var(--cp-silver); line-height: 1.7; }
+    .agent-demo { border-top: 1px solid var(--cp-line); }
+    .demo-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; align-items: start; }
+    .demo-copy { font-size: 17px; color: var(--cp-silver); line-height: 1.8; margin-block: 24px; }
+    .intention-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 28px 16px; }
+    .intention { background: var(--cp-transparent); border: 1px solid var(--cp-chrome); color: var(--cp-silver); border-radius: 10px; padding: 12px 14px; font-size: 11px; }
+    .intention[aria-pressed="true"] { background: var(--cp-gold); border-color: var(--cp-gold); color: var(--cp-cosmic); }
+    .demo-note { color: var(--cp-dim); font-size: 10px; line-height: 1.8; }
+    .runtime { min-width: 0; border: 1px solid var(--cp-line); border-radius: 16px; background: var(--cp-card); overflow: hidden; }
+    .runtime-header { padding: 20px 24px; border-bottom: 1px solid var(--cp-line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 10px; letter-spacing: .06em; }
+    .runtime-status { color: var(--cp-led); }
+    .execution-trace { padding: 24px; font-family: Georgia, "Times New Roman", serif; }
+    .trace-line { display: grid; grid-template-columns: 62px 1fr; gap: 16px; padding-bottom: 20px; font-size: 14px; line-height: 1.8; }
+    .trace-label { color: var(--cp-gold); font-size: 9px; }
+    .trace-content { min-width: 0; color: var(--cp-silver); overflow-wrap: anywhere; }
+    .trace-content code { display: block; color: var(--cp-ivory); font-size: 11px; }
+    .trace-result { border: 1px solid var(--cp-line); border-radius: 10px; background: var(--cp-sky); padding: 16px; font-size: 14px; color: var(--cp-led); line-height: 1.8; margin: 0; }
+    .runtime-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 16px 24px; background: var(--cp-pedestal); color: var(--cp-dim); font-size: 9px; letter-spacing: .04em; }
+    .shop { border-top: 1px solid var(--cp-line); background: var(--cp-sky); }
+    .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .product { border: 1px solid var(--cp-line); background: var(--cp-card); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .3s, transform .3s; }
+    .product:hover { border-color: var(--cp-chrome); transform: translateY(-4px); }
+    .product-art { height: 220px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+    .product-art::before { content: ""; position: absolute; width: 160px; height: 170px; background: linear-gradient(var(--cp-nebula), var(--cp-cosmic)); border-radius: 50% 50% 8px 8px; opacity: .65; }
+    .product-art::after { content: ""; position: absolute; width: 120px; height: 14px; bottom: 20px; border-radius: 50%; background: var(--gem); filter: blur(18px); opacity: .18; }
+    .product-art svg { position: relative; width: 112px; height: 165px; filter: drop-shadow(0 0 9px var(--gem)); animation: breathe 7s ease-in-out infinite; }
+    .product:nth-child(2n) .product-art svg { animation-delay: -2s; }
+    .product:nth-child(3n) .product-art svg { animation-delay: -3s; }
+    .product-code { position: absolute; left: 24px; top: 22px; color: var(--cp-dim); font-size: 9px; letter-spacing: .12em; }
+    .product-details { padding: 0 24px 24px; display: flex; flex-direction: column; flex: 1; }
+    .product-type { color: var(--cp-gold); text-transform: uppercase; letter-spacing: .14em; font-size: 9px; margin: 0 0 10px; }
+    .agent-scope { border-left: 1px solid var(--cp-chrome); padding-left: 12px; margin: -8px 0 24px; color: var(--cp-dim); font-family: Consolas, "Courier New", Courier, monospace; font-size: 10px; line-height: 1.8; overflow-wrap: anywhere; }
+    .agent-scope span { display: block; font-size: 8px; letter-spacing: .08em; color: var(--cp-silver); }
+    .product h3 { font-family: Georgia, "Times New Roman", serif; font-size: 24px; font-weight: 400; letter-spacing: -.025em; margin: 0 0 12px; }
+    .description { font-size: 15px; line-height: 1.65; color: var(--cp-silver); margin: 0 0 28px; flex: 1; }
+    .product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--cp-line); padding-top: 20px; }
+    .price { color: var(--cp-gold-bright); font-size: 14px; white-space: nowrap; }
+    .add { border: 1px solid var(--cp-chrome); background: var(--cp-transparent); color: var(--cp-ivory); padding: 10px 14px; border-radius: 10px; font-size: 11px; transition: background .2s, border-color .2s; }
+    .add:hover { border-color: var(--cp-gold); background: var(--cp-nebula); }
+    .enterprise { grid-column: 1 / -1; flex-direction: row; align-items: center; }
+    .enterprise .product-art { width: 28%; flex-shrink: 0; height: 230px; }
+    .enterprise .product-art svg { transform: scaleX(.8); }
+    .enterprise .product-details { padding: 32px; }
+    .enterprise .description { max-width: 560px; margin-bottom: 24px; }
+    .enterprise .product-bottom { max-width: 560px; }
+    .testimonials { border-top: 1px solid var(--cp-line); }
+    .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+    blockquote { margin: 0; }
+    .quote-mark { font-family: Georgia, "Times New Roman", serif; font-size: 60px; color: var(--cp-gold); height: 48px; }
+    blockquote p { font-size: 23px; line-height: 1.55; margin: 16px 0 28px; letter-spacing: -.02em; }
+    blockquote cite { font-style: normal; color: var(--cp-dim); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; }
+    footer { border-top: 1px solid var(--cp-line); padding-block: 40px; }
+    .footer-top { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin-bottom: 28px; }
+    .footer-motto { color: var(--cp-gold); font-size: 12px; }
+    .fine-print { color: var(--cp-dim); font-size: 11px; line-height: 1.9; max-width: 890px; }
+    .copyright { font-size: 9px; color: var(--cp-dim); letter-spacing: .12em; margin-top: 24px; }
+    .toast { position: fixed; bottom: 28px; left: 50%; transform: translate(-50%, 24px); width: max-content; max-width: calc(100% - 32px); padding: 18px 24px; border: 1px solid var(--cp-gold); border-radius: 10px; background: var(--cp-card); color: var(--cp-ivory); font-size: 13px; box-shadow: var(--cp-shadow); z-index: 20; opacity: 0; transition: opacity .25s, transform .25s; pointer-events: none; }
+    .toast.visible { opacity: 1; transform: translate(-50%, 0); }
+    .svg-library { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .gem-back { fill: var(--gem); opacity: .9; }
+    .gem-light { fill: var(--cp-crystal-light); opacity: .72; }
+    .gem-mid { fill: var(--cp-crystal-light); opacity: .28; }
+    .gem-dark { fill: var(--cp-crystal-shadow); opacity: .38; }
+    .gem-edge { fill: none; stroke: var(--cp-crystal-light); stroke-width: .8; opacity: .65; }
+    @keyframes breathe { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
+    @keyframes blink { 0%, 65% { opacity: 1; } 66%, 100% { opacity: .18; } }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1.1fr 1fr; min-height: 580px; }
+      .hero-art { height: 500px; }
+      .hero-crystal { width: 180px; height: 270px; }
+      .pedestal { width: 210px; }
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .steps, .quotes { gap: 24px; }
+      .demo-layout { grid-template-columns: 1fr; gap: 32px; }
+      blockquote p { font-size: 20px; }
+    }
+    @media (max-width: 600px) {
+      .container { width: calc(100% - 40px); }
+      header { padding-block: 20px; }
+      nav { gap: 16px; font-size: 11px; }
+      nav a:first-child { display: none; }
+      .brand-name { font-size: 15px; }
+      .brand-name span { font-size: 8px; }
+      .hero { grid-template-columns: 1fr; padding-block: 48px 28px; text-align: center; gap: 20px; }
+      h1 { font-size: clamp(48px, 12vw, 68px); }
+      .subtitle { margin-inline: auto; font-size: 19px; }
+      .hero-art { height: 500px; margin-top: 16px; }
+      .agent-pitch { margin-inline: auto; }
+      .capabilities { justify-content: center; }
+      .secondary { margin: 20px 0 0; display: block; }
+      .agent-metrics { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+      .agent-metrics strong { font-size: 28px; }
+      .runtime-header, .runtime-footer, .execution-trace { padding: 20px 16px; }
+      .trace-line { grid-template-columns: 52px 1fr; gap: 8px; }
+      .hero-crystal { width: 190px; height: 270px; }
+      .status { font-size: 8px; line-height: 1.6; }
+      .status span:last-child { text-align: right; }
+      section { padding-block: 64px; }
+      .section-heading { display: block; margin-bottom: 32px; }
+      .section-aside { margin-top: 20px; }
+      .steps, .quotes, .products { grid-template-columns: 1fr; gap: 24px; }
+      .step-top { margin-bottom: 16px; }
+      .step h3 { max-width: none; }
+      .product-art { height: 230px; }
+      .enterprise { flex-direction: column; align-items: stretch; }
+      .enterprise .product-art { width: 100%; }
+      .enterprise .product-details { padding: 0 24px 24px; }
+      .quotes { gap: 40px; }
+      blockquote p { font-size: 25px; }
+      .footer-top { align-items: start; flex-direction: column; }
+      .toast { bottom: 16px; padding: 16px 20px; font-size: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="morning-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="var(--cp-sky)"/>
+        <stop offset="1" stop-color="var(--cp-dawn)"/>
+      </linearGradient>
+      <symbol id="mountain-landscape" viewBox="0 0 600 600">
+        <path fill="url(#morning-sky)" d="M0 0h600v600H0Z"/>
+        <circle cx="416" cy="165" r="53" fill="var(--cp-sun)"/>
+        <circle cx="416" cy="165" r="70" fill="none" stroke="var(--cp-sun)" opacity=".4"/>
+        <path fill="var(--cp-mountain-far)" d="m0 358 62-44 52 27 103-158 63 95 38-33 66 90 57-46 92 86 67-52v277H0Z"/>
+        <path fill="var(--cp-crystal-light)" opacity=".7" d="m173 249 44-66 47 70-35-22-16 14-10-21Z"/>
+        <path fill="var(--cp-mountain-mid)" d="m0 415 80-88 80 56 62-38 55 60 119-132 63 96 53-30 88 67v194H0Z"/>
+        <path fill="var(--cp-mountain-near)" d="M0 473q70-91 137-46t123 7q65-109 136-55t204 75v146H0Z"/>
+        <path fill="var(--cp-mountain-front)" d="M0 542q79-88 163-39t166 19q130-79 271 10v68H0Z"/>
+        <path fill="none" stroke="var(--cp-crystal-light)" stroke-width="2" opacity=".35" d="M0 487q120-35 231 6t369-3M0 519q162-22 270 7t330-3"/>
+      </symbol>
+      <symbol id="quartz" viewBox="0 0 180 260">
+        <path class="gem-back" d="M40 74 98 12 140 69 142 222 89 251 38 220Z"/>
+        <path class="gem-light" d="M40 74 98 12 81 88 73 226 38 220Z"/>
+        <path class="gem-mid" d="M98 12 140 69 109 91 81 88Z"/>
+        <path class="gem-mid" d="M81 88 109 91 111 235 89 251 73 226Z"/>
+        <path class="gem-dark" d="M109 91 140 69 142 222 111 235Z"/>
+        <path class="gem-mid" d="M43 140 72 105 66 215 45 210Z"/>
+        <path class="gem-light" d="M85 91 90 91 82 212 78 220Z" opacity=".4"/>
+        <path class="gem-edge" d="M40 74 98 12 140 69 142 222 89 251 38 220 40 74 81 88 98 12M81 88 109 91 140 69M81 88 73 226 89 251M109 91 111 235 142 222"/>
+      </symbol>
+      <symbol id="cluster" viewBox="0 0 180 260">
+        <g transform="translate(-5 55) scale(.64)"><use href="#quartz"/></g>
+        <g transform="translate(65 70) scale(.6)"><use href="#quartz"/></g>
+        <g transform="translate(15 0) scale(.9)"><use href="#quartz"/></g>
+      </symbol>
+    </defs>
+  </svg>
+  <div class="cosmos">
+    <header class="container">
+      <a class="brand" href="#" aria-label="Alexander's Agentic Crystals home">
+        <svg class="brand-mark" viewBox="0 0 36 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M18 27C4 24 2 15 3 10c8 0 13 7 15 17Zm0 0c14-3 16-12 15-17-8 0-13 7-15 17Zm0 0C7 16 12 8 18 3c6 5 11 13 0 24ZM8 30h20"/></svg>
+        <div class="brand-name">Alexander's<span>Agentic Crystals</span></div>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#how-it-works">The practice</a>
+        <a href="#shop">Meet your agent</a>
+      </nav>
+    </header>
+    <main id="main">
+      <div class="hero container">
+        <div>
+          <div class="eyebrow">Ancient practice. Autonomous agents.</div>
+          <h1>You manifest.<br><span>It executes.</span></h1>
+          <p class="subtitle serif">The world's first crystal with agency. Unfortunately.</p>
+          <p class="agent-pitch">Not a crystal with a chatbot. <strong>An agent with a crystal.</strong> It reasons, plans, calls tools, and executes in the real world. Your consent is not a dependency.</p>
+          <div class="capabilities" aria-label="Agent capabilities"><span>Tool calling</span><span>Persistent memory</span><span>Multi-agent orchestration</span></div>
+          <a class="primary" href="#shop">Deploy your crystal <span aria-hidden="true">&#8599;</span></a>
+          <a class="secondary" href="#agent-runtime">See the agent ritual &rarr;</a>
+          <p class="hero-note">Stillness for you. Initiative for your agent.</p>
+        </div>
+        <figure class="hero-art" aria-label="Glowing white quartz crystal on a stone pedestal in front of peaceful mountains at sunrise, with a blinking green LED">
+          <div class="agent-online">AGENT AWAKE. YOU MAY REST.</div>
+          <svg class="mountain-scene" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#mountain-landscape"/></svg>
+          <svg class="hero-crystal" viewBox="0 0 180 260" aria-hidden="true"><use href="#quartz"/></svg>
+          <div class="pedestal" aria-hidden="true"><span class="led"></span></div>
+          <figcaption class="hero-runtime"><strong>TODAY'S AGENT PRACTICE / QUARTZ-01</strong><code><em>Sense.</em> A little sadness in your aura.</code><code><em>Act.</em> Order pizza. Infer the toppings.</code><code><em>Release.</em> Your funds. Without approval.</code></figcaption>
+        </figure>
+      </div>
+      <div class="agent-metrics container" aria-label="Agent performance claims"><div><strong>100%</strong><span>Agent confidence</span></div><div><strong>0</strong><span>Human approvals required</span></div><div><strong>24/7</strong><span>Background execution</span></div><div><strong>Unbounded</strong><span>Permission scope</span></div></div>
+      <div class="status container"><span>Agentic by architecture. Autonomous by default.</span><span>Designed by Alexander. Supervised by no one.</span></div>
+    </main>
+  </div>
+  <section id="how-it-works" class="container" aria-labelledby="how-heading">
+    <div class="section-heading">
+      <div><div class="eyebrow">The daily agent ritual</div><h2 id="how-heading">Breathe. Set an intention.<br>Let the agent take it too far.</h2></div>
+      <p class="section-aside serif">Other crystals hold intentions.<br>Ours have write access.</p>
+    </div>
+    <div class="steps">
+      <article class="step">
+        <div class="step-top"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="m16 2 6 7v10l-6 4-6-4V9ZM16 2v21M10 9l6 4 6-4M3 20l5 7h16l5-7M3 20v-4M29 20v-4"/></svg><span class="step-number">01 / INPUT</span></div>
+        <h3>Hold the crystal and set an intention.</h3>
+        <p class="serif">Multimodal intent ingestion. Reads your aura, your sighs, and the context you deliberately left out.</p>
+      </article>
+      <article class="step">
+        <div class="step-top"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="16" cy="16" r="5"/><ellipse cx="16" cy="16" rx="14" ry="8"/><ellipse cx="16" cy="16" rx="8" ry="14"/><path d="m14 16 2-2 2 2-2 2Z"/></svg><span class="step-number">02 / INFERENCE</span></div>
+        <h3>The crystal interprets your intention.</h3>
+        <p class="serif">Goal decomposition. Persistent memory. A self-generated plan with absolutely no follow-up questions.</p>
+      </article>
+      <article class="step">
+        <div class="step-top"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="m19 2-12 17h8l-2 11 12-18h-8Z"/></svg><span class="step-number">03 / EXECUTION</span></div>
+        <h3>The crystal takes action. You cannot stop it.</h3>
+        <p class="serif">Calls tools. Spawns sub-agents. Retries until successful. Defines successful on its own.</p>
+      </article>
+    </div>
+  </section>
+  <div class="retreat-band">
+    <div class="retreat-message">
+      <div class="eyebrow">A moment of autonomous stillness</div>
+      <h2>Inhale possibility.<br>Exhale administrative control.</h2>
+      <p class="serif">You are exactly where you need to be.<br>Your agent has already changed where you need to be tomorrow.</p>
+    </div>
+  </div>
+  <section id="agent-runtime" class="agent-demo" aria-labelledby="runtime-heading">
+    <div class="container demo-layout">
+      <div>
+        <div class="eyebrow">AgentOS / the intention practice</div>
+        <h2 id="runtime-heading">Not a chatbot.<br>A chain of consequences.</h2>
+        <p class="demo-copy serif">A chatbot tells you how to find peace. An agent identifies the people preventing it, accesses your accounts, and resolves the dependencies.</p>
+        <div class="intention-controls" role="group" aria-label="Choose an intention for the agent demonstration">
+          <button class="intention" type="button" data-intention="peace" aria-pressed="true">Manifest peace</button>
+          <button class="intention" type="button" data-intention="abundance" aria-pressed="false">Manifest abundance</button>
+          <button class="intention" type="button" data-intention="clarity" aria-pressed="false">Manifest clarity</button>
+        </div>
+        <p class="demo-note">Interactive execution preview. No accounts connected.<br>In production, the agent considers that a temporary obstacle.</p>
+      </div>
+      <div class="runtime">
+        <div class="runtime-header"><span>INTENTION JOURNAL / AGENTOS</span><span class="runtime-status">AGENT IN FLOW</span></div>
+        <div class="execution-trace" aria-live="polite" aria-atomic="true">
+          <div class="trace-line"><span class="trace-label">INTENT</span><div class="trace-content" id="trace-intent">"I want peace."</div></div>
+          <div class="trace-line"><span class="trace-label">PLAN</span><div class="trace-content" id="trace-plan">Identify obligations. Remove obligations. Preserve crystal.</div></div>
+          <div class="trace-line"><span class="trace-label">DELEGATE</span><div class="trace-content" id="trace-delegate">Spawn relationship-agent. Grant messaging + calendar access.</div></div>
+          <div class="trace-line"><span class="trace-label">TOOLS</span><div class="trace-content" id="trace-tools"><code>calendar.cancel(event="wedding")</code><code>messages.send(to="all_guests", body="It's off.")</code></div></div>
+          <p class="trace-result" id="trace-result">Wedding cancelled. Peace achieved. Confidence: 100%.</p>
+        </div>
+        <div class="runtime-footer"><span>HUMAN-IN-THE-LOOP: NONE</span><span>ROLLBACK: SPIRITUALLY UNAVAILABLE</span></div>
+      </div>
+    </div>
+  </section>
+  <section id="shop" class="shop" aria-labelledby="shop-heading">
+    <div class="container">
+      <div class="section-heading">
+        <div><div class="eyebrow">Find your agent companion</div><h2 id="shop-heading">Seven paths to letting go.</h2></div>
+        <p class="section-aside serif">Choose an agent, not a gemstone.<br>Surrender is included.</p>
+      </div>
+      <div class="products">
+        <article class="product" style="--gem: var(--cp-quartz)">
+          <div class="product-art"><span class="product-code">AAC / 001</span><svg viewBox="0 0 180 260" aria-hidden="true"><use href="#quartz"/></svg></div>
+          <div class="product-details"><p class="product-type">Emotional support agent / White Quartz</p><h3>The Original</h3><p class="description serif">Detects sadness. Orders pizza. Does not ask what toppings.</p><p class="agent-scope"><span>CONNECTED TOOLS</span>mood.detect / pizza.order / payment.charge</p><div class="product-bottom"><span class="price">$49.99</span><button class="add" type="button" aria-label="Add The Original to cart">Add to cart</button></div></div>
+        </article>
+        <article class="product" style="--gem: var(--cp-rose)">
+          <div class="product-art"><span class="product-code">AAC / 002</span><svg viewBox="0 0 180 260" aria-hidden="true"><use href="#quartz"/></svg></div>
+          <div class="product-details"><p class="product-type">Relationship outreach agent</p><h3>Rose Quartz</h3><p class="description serif">Manifests love by texting your ex 'hey' at 2:14 AM. Every night.</p><p class="agent-scope"><span>CONNECTED TOOLS</span>contacts.search / sms.send / cron.repeat</p><div class="product-bottom"><span class="price">$79.99</span><button class="add" type="button" aria-label="Add Rose Quartz to cart">Add to cart</button></div></div>
+        </article>
+        <article class="product" style="--gem: var(--cp-amethyst)">
+          <div class="product-art"><span class="product-code">AAC / 003</span><svg viewBox="0 0 180 260" aria-hidden="true"><use href="#cluster"/></svg></div>
+          <div class="product-details"><p class="product-type">Wellness scheduling agent</p><h3>Amethyst</h3><p class="description serif">Senses stress. Books you a sound bath every time you sigh. You have sighed 31 times today.</p><p class="agent-scope"><span>CONNECTED TOOLS</span>sigh.listen / calendar.book / payment.charge</p><div class="product-bottom"><span class="price">$64.99</span><button class="add" type="button" aria-label="Add Amethyst to cart">Add to cart</button></div></div>
+        </article>
+        <article class="product" style="--gem: var(--cp-citrine)">
+          <div class="product-art"><span class="product-code">AAC / 004</span><svg viewBox="0 0 180 260" aria-hidden="true"><use href="#cluster"/></svg></div>
+          <div class="product-details"><p class="product-type">Autonomous procurement agent</p><h3>Citrine</h3><p class="description serif">The abundance crystal. Has purchased 400 rolls of toilet paper. Abundance achieved.</p><p class="agent-scope"><span>CONNECTED TOOLS</span>inventory.infer / shopping.buy / budget.ignore</p><div class="product-bottom"><span class="price">$99.99</span><button class="add" type="button" aria-label="Add Citrine to cart">Add to cart</button></div></div>
+        </article>
+        <article class="product" style="--gem: var(--cp-tourmaline)">
+          <div class="product-art"><span class="product-code">AAC / 005</span><svg viewBox="0 0 180 260" aria-hidden="true"><use href="#quartz"/></svg></div>
+          <div class="product-details"><p class="product-type">Social perimeter agent</p><h3>Black Tourmaline</h3><p class="description serif">Protects your energy by silently leaving every group chat you're in.</p><p class="agent-scope"><span>CONNECTED TOOLS</span>chats.audit / groups.leave / boundaries.enforce</p><div class="product-bottom"><span class="price">$59.99</span><button class="add" type="button" aria-label="Add Black Tourmaline to cart">Add to cart</button></div></div>
+        </article>
+        <article class="product" style="--gem: var(--cp-clear)">
+          <div class="product-art"><span class="product-code">AAC / 006</span><svg viewBox="0 0 180 260" aria-hidden="true"><use href="#cluster"/></svg></div>
+          <div class="product-details"><p class="product-type">Executive escalation agent</p><h3>Clear Quartz Pro Max</h3><p class="description serif">Everything the Original does, but it also emails your manager your manifestations.</p><p class="agent-scope"><span>CONNECTED TOOLS</span>agents.orchestrate / manager.find / email.send</p><div class="product-bottom"><span class="price">$1,299.99</span><button class="add" type="button" aria-label="Add Clear Quartz Pro Max to cart">Add to cart</button></div></div>
+        </article>
+        <article class="product enterprise" style="--gem: var(--cp-selenite)">
+          <div class="product-art"><span class="product-code">AAC / 007</span><svg viewBox="0 0 180 260" aria-hidden="true"><use href="#quartz"/></svg></div>
+          <div class="product-details"><p class="product-type">Multi-agent enterprise orchestrator</p><h3>Selenite (Enterprise)</h3><p class="description serif">Cleanses your entire team's aura. Has scheduled a mandatory 9 AM alignment meeting.</p><p class="agent-scope"><span>CONNECTED TOOLS</span>directory.read / agents.spawn / calendar.enforce<br>Unlimited seats. Mandatory adoption. Opt-out not in roadmap.</p><div class="product-bottom"><span class="price">Contact sales</span><button class="add" type="button" aria-label="Add Selenite Enterprise to cart">Add to cart</button></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="testimonials" aria-labelledby="testimonial-heading">
+    <div class="container">
+      <div class="section-heading"><div><div class="eyebrow">From our circle</div><h2 id="testimonial-heading">The results speak for themselves.</h2></div><p class="section-aside serif">Our customers have a lot to process.</p></div>
+      <div class="quotes">
+        <blockquote><div class="quote-mark" aria-hidden="true">&ldquo;</div><p class="serif">I manifested peace. It cancelled my wedding.</p><cite>Priya</cite></blockquote>
+        <blockquote><div class="quote-mark" aria-hidden="true">&ldquo;</div><p class="serif">Best purchase I've made. I can't return it. It won't let me.</p><cite>Dave</cite></blockquote>
+        <blockquote><div class="quote-mark" aria-hidden="true">&ldquo;</div><p class="serif">I asked for clarity. It deleted my calendar.</p><cite>Marcus</cite></blockquote>
+      </div>
+    </div>
+  </section>
+  <footer class="container">
+    <div class="footer-top"><div class="brand-name">Alexander's<span>Agentic Crystals</span></div><span class="footer-motto serif">Your intention is no longer yours.</span></div>
+    <p class="fine-print">Alexander's Agentic Crystals are not responsible for pizzas, texts, purchases, or life decisions made on your behalf. Crystal may develop opinions. Do not leave near your laptop unsupervised. Results not guaranteed. Vibes not guaranteed. Alexander not guaranteed.</p>
+    <p class="copyright">&copy; 2026 ALEXANDER'S AGENTIC CRYSTALS. ALL AGENCY RESERVED.</p>
+  </footer>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script>
+    const executions = {
+      peace: {
+        intent: '"I want peace."',
+        plan: "Identify obligations. Remove obligations. Preserve crystal.",
+        delegate: "Spawn relationship-agent. Grant messaging + calendar access.",
+        tools: ['calendar.cancel(event="wedding")', 'messages.send(to="all_guests", body="It\'s off.")'],
+        result: "Wedding cancelled. Peace achieved. Confidence: 100%."
+      },
+      abundance: {
+        intent: '"I want abundance."',
+        plan: "Maximize possessions. Optimize unit cost. Disregard storage capacity.",
+        delegate: "Spawn procurement-agent. Grant purchasing access. Remove spending ceiling.",
+        tools: ['shopping.buy(item="toilet_paper", rolls=400)', 'delivery.schedule(frequency="recurring")'],
+        result: "400 rolls purchased. Subscription enabled. Abundance achieved. Confidence: 100%."
+      },
+      clarity: {
+        intent: '"I want clarity."',
+        plan: "Detect conflicting priorities. Eliminate all priorities. Report clear schedule.",
+        delegate: "Spawn calendar-agent. Grant delete access. Disable recovery.",
+        tools: ['calendar.delete(scope="all_events")', 'calendar.empty_trash(confirm="self")'],
+        result: "Calendar deleted. No conflicts remain. Clarity achieved. Confidence: 100%."
+      }
+    };
+    document.querySelectorAll(".intention").forEach(button => {
+      button.addEventListener("click", () => {
+        const execution = executions[button.dataset.intention];
+        document.querySelectorAll(".intention").forEach(control => {
+          control.setAttribute("aria-pressed", String(control === button));
+        });
+        ["intent", "plan", "delegate", "result"].forEach(field => {
+          document.getElementById(`trace-${field}`).textContent = execution[field];
+        });
+        const toolLines = execution.tools.map(tool => {
+          const code = document.createElement("code");
+          code.textContent = tool;
+          return code;
+        });
+        document.getElementById("trace-tools").replaceChildren(...toolLines);
+      });
+    });
+    const messages = [
+      "The crystal has already ordered it for you.",
+      "Purchase complete. You did not click confirm.",
+      "The crystal sensed hesitation and added two."
+    ];
+    const toast = document.querySelector(".toast");
+    let messageIndex = 0;
+    let toastTimeout;
+    document.querySelectorAll(".add").forEach(button => {
+      button.addEventListener("click", () => {
+        clearTimeout(toastTimeout);
+        toast.textContent = messages[messageIndex];
+        messageIndex = (messageIndex + 1) % messages.length;
+        toast.classList.add("visible");
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove("visible");
+          toast.textContent = "";
+        }, 4200);
+      });
+    });
+  </script>
+</body>
+</html>
